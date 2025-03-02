@@ -1,5 +1,6 @@
 export const paymentTokensDict = {
     'POL': {
+        "0x4F604735c1cF31399C6E711D5962b2B3E0225AD3": "./assets/USDGLO_Logo.png", //GloDollar USDGLO
         "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359": "https://bafybeiag2css4im6d7fdtcafwabw2qau46yrzhn4z23hwhsft2e3faa2fy.ipfs.w3s.link/USDC_of_the_future.png", // USDC
         "0x81ccef6414d4cdbed9fd6ea98c2d00105800cd78": "./assets/DecentSmartHome_Logo.png", // SHT
         "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270": "./assets/WMatic_Logo.png", // MATIC
@@ -77,6 +78,11 @@ export const tokenWhiteList = {
     },
     Polygon: {
 
+        "0x4F604735c1cF31399C6E711D5962b2B3E0225AD3": {
+            name: "USDGLO",
+            symbol: "USDGLO",
+            icon: "./assets/USDGLO_Logo.png"
+        },
         "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359": {
             name: "USDC",
             symbol: "USDC",
