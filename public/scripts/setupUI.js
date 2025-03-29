@@ -443,7 +443,7 @@ export const setupAlbumModal = (jukeboxContract) => {
                 alert("Unsupported network! Please switch to MintMe, Polygon, Optimism, or Arbitrum.");
                 return; // Exit if unsupported network
             }
-            
+
             // Log the values for debugging
             console.log("Adding album to contract...");
             console.log("albumName:", albumName);
@@ -453,9 +453,12 @@ export const setupAlbumModal = (jukeboxContract) => {
             console.log("formattedPlayFee:", formattedPlayFee.toString());
             console.log("formattedWholeAlbumFee:", formattedWholeAlbumFee.toString());
 
+            // patch for new album creation logic added with arbitrum deployment
+            let mainOwner;
             const tx = await jukeboxContract.addAlbum(
                 albumName,
                 cid,
+                mainOwner = ownerAddresses[0], // Use the first address as the main owner
                 ownerAddresses, // Pass multiple owners
                 paymentTokens,
                 formattedPlayFee,
