@@ -56,6 +56,16 @@ export const displayContractAddress = (contractAddress, chainId) => {
         // Update the link
         contractLink.innerHTML = formattedAddress;
         contractLink.href = `https://mintme.com/explorer/addr/${contractAddress}`;
+    } else if (chainId === 42161) {
+        // Format the contract address
+        const favicons = Array(4)
+            .fill('<img src="./assets/Arbitrum_Logo.png" alt="icon">')
+            .join('');
+        formattedAddress = `${contractAddress.slice(0, 4)}...${favicons}...${contractAddress.slice(-4)}`;
+
+        // Update the link
+        contractLink.innerHTML = formattedAddress;
+        contractLink.href = `https://arbiscan.io/address/${contractAddress}`;
     } else {
         console.error("Unsupported network:", chainId);
         return;
