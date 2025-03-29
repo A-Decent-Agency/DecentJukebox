@@ -444,21 +444,24 @@ export const setupAlbumModal = (jukeboxContract) => {
                 return; // Exit if unsupported network
             }
 
+            let mainOwner = ownerAddresses[0];
+
             // Log the values for debugging
             console.log("Adding album to contract...");
             console.log("albumName:", albumName);
             console.log("cid:", cid);
+            console.log("mainOwner:", mainOwner);
             console.log("ownerAddresses:", ownerAddresses);
             console.log("paymentTokens:", paymentTokens);
             console.log("formattedPlayFee:", formattedPlayFee.toString());
             console.log("formattedWholeAlbumFee:", formattedWholeAlbumFee.toString());
 
             // patch for new album creation logic added with arbitrum deployment
-            let mainOwner;
+            
             const tx = await jukeboxContract.addAlbum(
                 albumName,
                 cid,
-                mainOwner = ownerAddresses[0], // Use the first address as the main owner
+                mainOwner, // Use the first address as the main owner
                 ownerAddresses, // Pass multiple owners
                 paymentTokens,
                 formattedPlayFee,
