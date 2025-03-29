@@ -434,8 +434,17 @@ export const setupAlbumModal = (jukeboxContract) => {
                 formattedPlayFee = ethers.utils.parseUnits(playFee, 18);
                 formattedWholeAlbumFee = ethers.utils.parseUnits(wholeAlbumFee, 18);
                 formattedAlbumCreationFee = ethers.utils.parseUnits(albumCreationFee.toString(), 18);
+            } else if(window.chainId === 42161) { // Arbitrum
+                // Assuming the same fee structure for Arbitrum as for Optimism
+                formattedPlayFee = ethers.utils.parseUnits(playFee, 18);
+                formattedWholeAlbumFee = ethers.utils.parseUnits(wholeAlbumFee, 18);
+                formattedAlbumCreationFee = ethers.utils.parseUnits(albumCreationFee.toString(), 18);
+            } else {
+                alert("Unsupported network! Please switch to MintMe, Polygon, Optimism, or Arbitrum.");
+                return; // Exit if unsupported network
             }
-
+            
+            // Log the values for debugging
             console.log("Adding album to contract...");
             console.log("albumName:", albumName);
             console.log("cid:", cid);
