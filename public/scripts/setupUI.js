@@ -314,10 +314,13 @@ export const setupAlbumModal = (jukeboxContract) => {
         feeLabel = "1 Polygon Coin";
         DEFAULT_TOKENS = Object.keys(tokenWhiteList.Polygon);
     } else if (window.chainId === 10) { // Optimism Network
-        feeLabel = "1 OVM Coin";
+        feeLabel = "0.0001 ETH";
         DEFAULT_TOKENS = Object.keys(tokenWhiteList.Optimism);
+    } else if (window.chainId === 42161) { // Arbitrum
+        feeLabel = "0.0001 Eth";
+        DEFAULT_TOKENS = Object.keys(tokenWhiteList.Arbitrum);
     } else {
-        alert("Unsupported network! Please switch to MintMe, Polygon, or Optimism.");
+        alert("Unsupported network! Please switch to MintMe, Polygon, Optimism, or Arbitrum.");
         return;
     }
 
