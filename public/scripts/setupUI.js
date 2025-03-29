@@ -123,9 +123,13 @@ export const updateRightLCD = async (jukeboxContract, albumName) => {
         const networkTokens = 
         window.chainId === 24734 
             ? tokenWhiteList.MintMe 
-            : window.chainId === 10 
-                ? tokenWhiteList.Optimism 
-                : tokenWhiteList.Polygon;
+            : window.chainId === 10
+                ? tokenWhiteList.Optimism
+                : window.chainId === 137
+                    ? tokenWhiteList.Polygon
+                    : window.chainId === 42161
+                        ? tokenWhiteList.Arbitrum
+                        : {}; // Default to an empty object if chainId doesn't match any known networks
         // console.log("Album Payment Tokens:", paymentTokens);
         // console.log("Network Tokens:", networkTokens);
 
@@ -410,6 +414,10 @@ export const setupAlbumModal = (jukeboxContract) => {
             .getElementById("album-owner")
             .value.split(",")
             .map((address) => address.trim());
+
+        const ownershipPercentages = document.getElementById("album-ownerPercentages").value.split(",").map((percentage) => percentage.trim());
+        const ownershipPositions = document.getElementById("album-ownerPositions").value.split(",").map((position) => position.trim());
+        
         const paymentTokens = document.getElementById("payment-tokens").value
             .trim()
             .split(",")
@@ -444,14 +452,15 @@ export const setupAlbumModal = (jukeboxContract) => {
                 return; // Exit if unsupported network
             }
 
-            let mainOwner = ownerAddresses[0];
+
 
             // Log the values for debugging
             console.log("Adding album to contract...");
             console.log("albumName:", albumName);
             console.log("cid:", cid);
-            console.log("mainOwner:", mainOwner);
             console.log("ownerAddresses:", ownerAddresses);
+            console.log("ownershipPercentages:", ownershipPercentages);
+            console.log("ownershipPositions:", ownershipPositions);
             console.log("paymentTokens:", paymentTokens);
             console.log("formattedPlayFee:", formattedPlayFee.toString());
             console.log("formattedWholeAlbumFee:", formattedWholeAlbumFee.toString());
@@ -461,12 +470,14 @@ export const setupAlbumModal = (jukeboxContract) => {
             const tx = await jukeboxContract.addAlbum(
                 albumName,
                 cid,
-                mainOwner, // Use the first address as the main owner
                 ownerAddresses, // Pass multiple owners
+                ownershipPercentages, // Assuming this is an empty array for now
+                ownershipPositions, // Assuming this is an empty array for now
                 paymentTokens,
                 formattedPlayFee,
                 formattedWholeAlbumFee,
                 { value: formattedAlbumCreationFee } // Send album creation fee
+
             );
 
             console.log("Transaction Hash:", tx.hash);
