@@ -40,7 +40,7 @@ export const showTrackAndTokenSelectionModal = async (trackList, paymentTokens) 
 
 
         // Load and populate token icons
-        const fetchedIcons = await Promise.all(
+        let fetchedIcons = await Promise.all(
             Object.entries(paymentTokens).map(async ([token, url]) => {
                 try {
                     const response = await fetch(url);

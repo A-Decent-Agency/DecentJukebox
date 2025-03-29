@@ -91,6 +91,7 @@
 <a href="https://bobdub.github.io/JollyJukeBox/public/" target="_blank">Bobdub's Jukebox (V1.2.2 on Polygon)</a>
 [Decent JukeBox V1.2.2 on Polygon](https://polygonscan.com/address/0x48c33Eb5843a6A84AB01f7d456F4Fd61EB1c3c92)
 
+[Decent JukeBox V1.3 on Arbitrum](https://arbiscan.io/address/0xB789986181C864d16e89931E6520d8CeC159b152) (First Jukebox on Arbitrum, Retroactive Album Ownership, Album Owner Info with 'position' title, Update Album CID, , Ownership percentages, Ownable, Pausable, ReentrancyGuard)
 
 [Decent JukeBox V1.2.6 on Optimism](https://optimistic.etherscan.io/address/0xbDDeF5dcf7DdedB400D982E35c6627f89E85D4BE) (update Play Fees)
 

@@ -201,12 +201,20 @@ export const validateIPFSCID = async (cid) => {
 // Function to play a song from the album
 export const playSong = async (jukeboxContract, albumName, songIndex) => {
     try {
-        const tx = await jukeboxContract.playSong(albumName, songIndex);
+        const tx = await jukeboxContract.playSong(albumName, songIndex, {
+            gasLimit: ethers.utils.hexlify(800000)
+
+        });
         console.log("Transaction Hash:", tx.hash);
         await tx.wait();
         console.log("Transaction Mined:", tx.hash);
     } catch (error) {
         console.error("Error playing song:", error);
+        if (error.code === -32603) {
+            alert("An error occurred while processing the transaction. Please try again.");
+        } else {
+            alert(error.message);
+        }
         throw error;
     }
 };
@@ -257,6 +265,11 @@ export const approveToken = async (tokenAddress, spender, amount) => {
         console.log("Approval successful!");
     } catch (error) {
         console.error("Error during token approval:", error);
+        if (error.code === -32603) {
+            alert("An error occurred while processing the approval transaction. Please try again.");
+        } else {
+            alert(error.message);
+        }
         throw error;
     }
 };

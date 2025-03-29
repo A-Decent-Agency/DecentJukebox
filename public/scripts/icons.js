@@ -22,6 +22,12 @@ export const paymentTokensDict = {
     'Optimism': {
         "0x4F604735c1cF31399C6E711D5962b2B3E0225AD3": "./assets/USDGLO_Logo.png",
         "0xDb83f6d02a9fA73fc1B47A0Cfff33D2dC66aD619": "./assets/DecentSmartHome_Logo.png",
+    },
+    'Arbitrum': {
+        "0x4F604735c1cF31399C6E711D5962b2B3E0225AD3": "./assets/USDGLO_Logo.png",
+        "0x4Fc4d4231c34654D3286A02a47030Ae2AD5Ab68D": "./assets/DecentSmartHome_Logo.png",
+        "0x0B4dD4a324dd34eA95C572B48E1a2dCDAAcE8F10": "./assets/Ommm_Logo.png"
+
     }
 };
 
@@ -118,6 +124,23 @@ export const tokenWhiteList = {
             name: "SHT",
             symbol: "SHT",
             icon: "./assets/DecentSmartHome_Logo.png",
+        }
+    },
+    Arbitrum: {
+        "0x4F604735c1cF31399C6E711D5962b2B3E0225AD3": {
+            name: "USDGLO",
+            symbol: "USDGLO",
+            icon: "./assets/USDGLO_Logo.png"
+        },
+        "0x4Fc4d4231c34654D3286A02a47030Ae2AD5Ab68D": {
+            name: "SHT",
+            symbol: "SHT",
+            icon: "./assets/DecentSmartHome_Logo.png",
+        },
+        "0x0B4dD4a324dd34eA95C572B48E1a2dCDAAcE8F10": {
+            name: "Ommm",
+            symbol: "Ommm",
+            icon: "./assets/Ommm_Logo.png"
         }
     }
         
