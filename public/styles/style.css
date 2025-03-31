@@ -54,7 +54,7 @@ video {
     z-index: 2000; /* Ensure it appears above other elements */
     display: block; /* Default state */
     visibility: visible;
-    object-fit: cover; /* Ensure the video scales properly */
+    object-fit: fill; /* Ensure the video scales properly */
 }
 
 #video-player.hidden {
