@@ -150,6 +150,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         creditsVideo.pause();
 
+        // add in credits button and question mark button
+        creditsButton.classList.remove("hidden");
+        questionMarkButton.classList.remove("hidden");
+        
+
     });
 
     
