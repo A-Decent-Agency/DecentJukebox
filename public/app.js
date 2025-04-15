@@ -20,13 +20,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const creditsButton = document.getElementById("credits-button");
     const creditsContainer = document.getElementById("credits-container");
     const creditsVideo = document.getElementById("credits-video");
-    const creditsAudio = document.getElementById("credits-audio");
     const creditsLinks = document.getElementById("credits-links");
     const rollOutButton = document.getElementById("roll-out-button");
 
     creditsLinks.classList.remove("visible");
     creditsLinks.classList.add("hidden");
-    creditsAudio.pause();
 
     let currentVersion = "v1.2"; // Default version
     let contractAddress = "0xACB7850f5836fD9981c7d01F2Ca64628a661f287"; // Default address for v1.1
@@ -129,9 +127,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         creditsContainer.classList.add("visible");
         creditsContainer.classList.remove("hidden");
 
-        creditsVideo.src = "./assets/Credits_Roll_In.mp4";
+        creditsVideo.src = "./assets/DecentJukeboxCreditRoll.mp4";
         creditsVideo.play();
-        creditsAudio.play();
 
         setTimeout(() => {
             creditsLinks.classList.add("visible");
@@ -146,63 +143,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Roll Out button logic
     rollOutButton.addEventListener("click", () => {
         creditsLinks.classList.remove("visible");
-        creditsVideo.src = "./assets/Credits_Roll_Out.mp4";
-        creditsVideo.play();
+        creditsLinks.classList.add("hidden");
 
-        creditsVideo.onended = async () => {
-            creditsAudio.pause();
-            creditsContainer.classList.remove("visible");
-            document.getElementById("landing").classList.remove("hidden");
-            document.getElementById("controls").classList.add("hidden");
-            creditsContainer.classList.add("hidden");
-            creditsContainer.classList.remove("visible");
-            creditsLinks.classList.remove("visible");
-            creditsLinks.classList.add("hidden");
-            questionMarkButton.classList.remove("hidden");
-            creditsButton.classList.remove("hidden");
-            if (localStorage.getItem("walletConnected") === "true" && localStorage.getItem("hasEnteredJukebox") === "false") {
-                enterControlsButton.classList.remove("hidden");
-                enterControlsButton.classList.add("visible");
-            }else if (localStorage.getItem("walletConnected") === "true" && localStorage.getItem("hasEnteredJukebox") === "true") {
-                connectWalletButton.classList.add("hidden");
-                connectWalletButton.classList.remove("visible");
-                enterControlsButton.classList.add("hidden");
-                enterControlsButton.classList.remove("visible");
-                document.getElementById("landing").classList.add("hidden");
-                document.getElementById("landing").classList.remove("visible");
+        creditsContainer.classList.add("hidden");
+        creditsContainer.classList.remove("visible");
 
-                document.getElementById("controls").classList.remove("hidden");
-                document.getElementById("controls").classList.add("visible");
+        creditsVideo.pause();
 
-                try {
-                    // Show loader while loading albums
-                    showLoader();
-
-                    console.log("Entering Controls View and loading albums...");
-
-                    // Ensure the albums are loaded into the left LCD
-                    const jukeboxContract = await initializeContract();
-                    await loadAlbums(jukeboxContract);
-
-                    // Setup album modal functionality
-                    await setupAlbumModal(jukeboxContract);
-
-                    // Show Add Album button and left LCD
-                    document.getElementById("lcd-screen-left").classList.add("visible");
-                    document.getElementById("add-album").classList.remove("hidden");
-
-                } catch (error) {
-                    console.error("Error transitioning to Controls View:", error);
-                    // alert("An error occurred while loading the Controls View.");
-                } finally {
-                    // Hide the loader
-                    hideLoader();
-                }
-                
-
-            }
-
-        };
     });
 
     
