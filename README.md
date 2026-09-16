@@ -22,6 +22,22 @@
     🎶🎶 Enjoy the tunes! 🎶🎶
     </p>
 </div>
+
+## ART payroll
+
+GitHub bounty automation records ART payouts in `payroll-queue.json` and updates pending and earned totals in `contributor-accounts.json`. It never sends tokens or deploys contracts.
+
+- Contributor labels must be exactly `bounty: <positive decimal> ART` or `bounty: <positive decimal> $ART`.
+- Testing labels use the equivalent `test-bounty: <positive decimal> ART` or `test-bounty: <positive decimal> $ART` format.
+- An exact `idea-credit: @username` label splits a bounty 80% to the implementer and 20% to the idea originator.
+- Link work with `Closes #123` in the PR body, `#123` in its title, or GitHub's linked-issue UI. The Bounty Bot also supports manual recovery by PR and issue number.
+- The PR author is preferred when whitelisted; a whitelisted issue assignee is the fallback.
+- Assigned testers use `/test-complete`; the repository owner uses `/test-approved` to queue the testing payout.
+- Administrators use the Settle Payroll workflow to settle all pending entries or filter by contributor and/or issue reference, optionally recording a transaction hash.
+
+Run `npm test` for focused payroll tests and `npm run validate:payroll` to check queue integrity.
+
+New contributors can open the Contributor Request issue form with only their GitHub handle, payout wallet, desired technical help, and relevant links. The notification workflow assigns and mentions the repository owner on the issue; it intentionally uses GitHub notifications and has no SMTP dependency.
 <div>
     <h2>Credits:</h2>
     <p>BOBDUB - for the render request and brainstorm sessions.
