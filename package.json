@@ -4,7 +4,9 @@
   "description": "Web3 JukeBox",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test test/payroll.test.js test/commentArt.test.js",
+    "test:payroll": "node --test test/payroll.test.js test/commentArt.test.js",
+    "validate:payroll": "node scripts/validatePayrollQueue.js"
   },
   "keywords": [],
   "author": "",
