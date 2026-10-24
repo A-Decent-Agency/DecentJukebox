@@ -5,7 +5,7 @@
   "image": null,
   "license": "Apache-2.0",
   "source_repository": "https://github.com/TheJollyLaMa/DecentBusking",
-  "source_commit": "aa851edda6d3aa08711c66d8e7c480dedca98533",
+  "source_commit": "948289670ed43678ea0dcaeafd8ea487bd78a2b0",
   "release_tag": null,
   "release_commit": null,
   "archive_cid": null,
@@ -17,7 +17,7 @@
   "refresh_recipient_before_signing": true,
   "attributes": [
     { "trait_type": "Status", "value": "UNMINTED / UNRELEASED DRAFT" },
-    { "trait_type": "Planned editions", "value": 1000 },
+    { "trait_type": "Planned editions", "value": 100 },
     { "trait_type": "Planned unit price", "value": "10 USDC on Base" },
     { "trait_type": "Display identity", "value": "DJuke.decentagency.eth" }
   ]

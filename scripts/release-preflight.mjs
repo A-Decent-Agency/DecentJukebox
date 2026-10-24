@@ -26,7 +26,7 @@ try {
   assert.equal(metadata.source_commit, inputs.sourceCommit);
   assert.equal(inputs.chainId, 8453);
   assert.equal(inputs.usdcAddress.toLowerCase(), '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913');
-  assert.equal(inputs.editions, 1000);
+  assert.equal(inputs.editions, 100);
   assert.equal(inputs.unitPriceUsdc, '10');
   assert.equal(inputs.unitPriceUnits, '10000000');
   assert.equal(inputs.royaltyBps, 1000);
