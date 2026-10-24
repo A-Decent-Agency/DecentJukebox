@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/TheJollyLaMa/DecentBusking",
-  "commit": "aa851edda6d3aa08711c66d8e7c480dedca98533",
+  "commit": "948289670ed43678ea0dcaeafd8ea487bd78a2b0",
   "files": [
     {
       "source": "js/djuke-widget.mjs",
       "path": "js/djuke-widget.mjs",
-      "sha256": "33f80745d451868f312d8ebf690db030a54908d1d7564d89a10799ecd0ad8b2a"
+      "sha256": "6e9eef0e26a5b6a219ebb9c5a207302a98b8423b5268bcb93cf12053fc006af3"
     },
     {
       "source": "js/djuke-payment.mjs",
@@ -20,7 +20,12 @@
     {
       "source": "js/djuke-playlists.mjs",
       "path": "js/djuke-playlists.mjs",
-      "sha256": "7ac8f76718f91daed281a678dd431dcfd9e888ec9de0cbda1b695874393a3d67"
+      "sha256": "a3a40c33d8437fb2e9598bcddae46effa6bae9a7ebbf34cc0f74cd0abc00c8fc"
+    },
+    {
+      "source": "js/djuke-playlist-progress.mjs",
+      "path": "js/djuke-playlist-progress.mjs",
+      "sha256": "933a6a1e8980dd245af2bbec8ee2f54973278b93a3b6934d9423ded86a3abfab"
     },
     {
       "source": "js/base-chain.mjs",
@@ -55,7 +60,7 @@
     {
       "source": "test/djuke-widget.test.js",
       "path": "test/djuke-widget.test.cjs",
-      "sha256": "6c42a8d57c5694a871a032c5232b395635cf48e0196318f961a6f00639415b3d"
+      "sha256": "39b2e26d0ae92d0163f4c1a65c824b29ebd4ec17c04e91b7f55208789cf52ca4"
     },
     {
       "source": "LICENSE",

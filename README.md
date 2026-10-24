@@ -136,7 +136,7 @@ Never submit secrets, wallet recovery phrases or private profile exports.
 ## Provenance and validation
 
 `vendor/busking/` is a narrow, byte-preserved snapshot at
-[`aa851edda6d3aa08711c66d8e7c480dedca98533`](https://github.com/TheJollyLaMa/DecentBusking/commit/aa851edda6d3aa08711c66d8e7c480dedca98533),
+[`948289670ed43678ea0dcaeafd8ea487bd78a2b0`](https://github.com/TheJollyLaMa/DecentBusking/commit/948289670ed43678ea0dcaeafd8ea487bd78a2b0),
 not a moving URL or whole-app copy. Manifest: `sources/busking.json`;
 hashes: `vendor/busking/INVENTORY.json`. Code is Apache-2.0, original
 creative content CC BY 4.0; upstream LICENSE/NOTICE/creative license

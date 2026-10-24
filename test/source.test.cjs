@@ -7,14 +7,14 @@ const { resolve } = require('node:path');
 test('vendored source inventory matches the immutable Busking commit', () => {
   const root = resolve(__dirname, '..');
   const output = execFileSync(process.execPath, ['scripts/vendor-busking.mjs', '--check'], { cwd: root, encoding: 'utf8' });
-  assert.match(output, /Verified 14 source files at [0-9a-f]{40}/);
+  assert.match(output, /Verified 15 source files at 948289670ed43678ea0dcaeafd8ea487bd78a2b0/);
 });
 test('public entry is a plain ES module and supporter inputs remain unsigned drafts', async () => {
   const { mount } = await import('../widget.js');
   assert.equal(typeof mount, 'function');
   const draft = JSON.parse(readFileSync(resolve(__dirname, '../docs/supporter-release-inputs.json'), 'utf8'));
   assert.equal(draft.status, 'unsigned-unminted-unreleased-draft');
-  assert.equal(draft.editions, 1000);
+  assert.equal(draft.editions, 100);
   assert.equal(draft.unitPriceUsdc, '10');
   assert.equal(draft.royaltyBps, 1000);
   assert.equal(draft.chainId, 8453);
@@ -58,7 +58,7 @@ test('release renderer root mounts the real widget and preserves the historical 
 });
 test('supporter callers pin both kit references and require explicit notifier opt-in', () => {
   const root = resolve(__dirname, '..');
-  const pin = '3b2a72f7f8c49fb2af89ea7df2ead8e338e0e870';
+  const pin = 'a0f3bdebcbb5ded8437446797fcba28272af8098';
   for (const [caller, reusable] of [['release', 'prepare'], ['announce', 'announce']]) {
     const workflow = readFileSync(resolve(root, `.github/workflows/supporter-${caller}.yml`), 'utf8');
     assert.ok(workflow.includes(`uses: TheJollyLaMa/DecentHead/.github/workflows/product-supporter-${reusable}.yml@${pin}`));
@@ -68,6 +68,7 @@ test('supporter callers pin both kit references and require explicit notifier op
     if (caller === 'release') {
       assert.ok(workflow.includes('PINATA_JWT: ${{ secrets.PINATA_JWT }}'));
       assert.match(workflow, /product_name: DJuke/);
+      assert.match(workflow, /quantity: '100'/);
     } else {
       assert.ok(workflow.includes("if: ${{ vars.SUPPORTER_DISCORD_ENABLED == 'true' }}"));
       assert.ok(workflow.includes('DISCORD_SUPPORTER_WEBHOOK: ${{ secrets.DISCORD_SUPPORTER_WEBHOOK }}'));

@@ -6,7 +6,18 @@ has frozen source/site/art/metadata assets. The local draft JSON remains unsigne
 planning input, not the frozen manifest or on-chain evidence. Related:
 [DecentBusking #245](https://github.com/TheJollyLaMa/DecentBusking/issues/245).
 
-Prepared parameters: 1,000 ERC-1155 editions × 10 native USDC on **Base (8453)**,
+## First mint candidate: v0.2.0
+
+The steward reduced supply to **100 editions** and requested ENS/IPFS verification
+before minting. Frozen v0.1.0 assets describe the superseded 1,000-edition
+preparation and must not be used for this mint.
+Source now pins Busking `948289670ed43678ea0dcaeafd8ea487bd78a2b0`
+(PRs #285–#287), including shared playlist position/remaining/settling progress.
+The 15-file inventory includes `js/djuke-playlist-progress.mjs`; backend
+checkpoint/continuity fixes remain hosted-service dependencies, not bundled
+independent infrastructure. Existing Apache-2.0/CC-BY-4.0 notices are retained.
+
+Prepared parameters: 100 ERC-1155 editions × 10 native USDC on **Base (8453)**,
 royalty **1,000 bps (10%)**. The steward corrected the wallet split:
 **thejollylama.eth**, `0x807061DF657A7697c04045dA7d16D941861cAABc`, handles
 supporter registration/minting, initial editions and royalties.
@@ -98,9 +109,9 @@ pinning infrastructure remain deployment dependencies.
 ### Pinned reusable preparation and announcement
 
 The product callers `.github/workflows/supporter-{release,announce}.yml` use
-DecentHead **`3b2a72f7f8c49fb2af89ea7df2ead8e338e0e870`** in both `uses:`
+DecentHead **`a0f3bdebcbb5ded8437446797fcba28272af8098`** in both `uses:`
 and `head_ref`. Source:
-[SUPPORTER-PRODUCTS.md](https://github.com/TheJollyLaMa/DecentHead/blob/3b2a72f7f8c49fb2af89ea7df2ead8e338e0e870/docs/SUPPORTER-PRODUCTS.md).
+[SUPPORTER-PRODUCTS.md](https://github.com/TheJollyLaMa/DecentHead/blob/a0f3bdebcbb5ded8437446797fcba28272af8098/docs/SUPPORTER-PRODUCTS.md).
 The reviewed kit renders `PRODUCT_URL` at the product root, so `index.html`
 mounts the actual widget (byte-identical to `widget.html`), not the historical
 app, a redirect or a directory listing.
@@ -114,7 +125,7 @@ release assets/issues**. Do not trigger it merely to test credentials.
 Existing frozen releases must not be re-prepared; use a new reviewed version.
 These local draft JSON files remain unsigned planning inputs, not proof that
 the kit's generated metadata/contract mint/listing will match every approved
-term. Review frozen metadata, 1,000 editions, 10 USDC price, 10% royalty and
+term. Review frozen metadata, 100 editions, 10 USDC price, 10% royalty and
 recipient routing before the steward signs anything.
 
 The parent/operator configured `PINATA_JWT` in repository secrets; preparation
@@ -150,7 +161,7 @@ ownership, current Agency admin status, live site deployment or primary routing.
 - [ ] Review mint/register history to avoid duplicate registration/edition mint.
 - [ ] Obtain explicit steward wallet signatures for any mint/register/list steps.
   Workers must not sign, move funds or automate these authorizations.
-- [ ] Separately approve distribution/listing (1,000 × 10 USDC, Base, 1,000 bps).
+- [ ] Separately approve distribution/listing (100 × 10 USDC, Base, 1,000 bps).
 - [ ] Only after verified receipts, approve release publication and announcements.
 
 No marketplace URL, minted token ID, purchase, return, ENS registration/contenthash
