@@ -39,6 +39,14 @@ local dependency copy; no private credentials are involved.
 
 ## Embed: S12 host contract
 
+Choose [hosted-service embedding and origin onboarding](docs/HOSTED-EMBED.md)
+or [independent infrastructure deployment](docs/INDEPENDENT-DEPLOYMENT.md).
+Both are supported integration goals, **not verified release claims**. The latter
+documents the actual upstream scripts and explicitly blocks the missing generic
+deployment path; this repository contains no worker or contract deployment CLI.
+Run `npm run preflight:offline` for unsigned input/provenance validation and
+`npm run preflight` for release gates (currently exits 2: blocked).
+
 ```html
 <!-- Your host already owns a single <decent-header>. -->
 <div id="music" style="--djuke-accent:#99e9ce;--djuke-radius:8px"></div>

@@ -10,6 +10,7 @@
   "release_commit": null,
   "archive_cid": null,
   "seller_fee_basis_points": 1000,
+  "fee_recipient_ens": "decentagency.eth",
   "fee_recipient": null,
   "attributes": [
     { "trait_type": "Status", "value": "UNMINTED / UNRELEASED DRAFT" },

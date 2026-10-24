@@ -8,7 +8,9 @@
   "files": ["widget.js", "widget.html", "vendor/busking", "scripts", "test", "docs", "assets", "sources", "LICENSE", "LICENSES", "NOTICE", "README.md"],
   "scripts": {
     "test": "node --test test/*.test.cjs",
-    "verify:source": "node scripts/vendor-busking.mjs --check"
+    "verify:source": "node scripts/vendor-busking.mjs --check",
+    "preflight:offline": "node scripts/release-preflight.mjs --offline",
+    "preflight": "node scripts/release-preflight.mjs"
   },
   "keywords": [],
   "author": "",

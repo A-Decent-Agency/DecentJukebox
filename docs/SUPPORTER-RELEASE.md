@@ -1,13 +1,45 @@
 # Unsigned DJuke supporter release checklist (S11 / S12)
 
 **Not minted. Not listed. Not released.** No token/listing ID or archive CID
-exists in these draft inputs. No tags, release automation or chain actions are
-authorized by this implementation PR. Related:
+exists in these draft inputs. Hosted embeds and documented independent deployments
+are authorized goals; merge/deploy/publish remain conditional on verification.
+This implementation performs no deployment, tags, pinning or chain actions. Related:
 [DecentBusking #245](https://github.com/TheJollyLaMa/DecentBusking/issues/245).
 
 Prepared parameters: 1,000 ERC-1155 editions × 10 native USDC on **Base (8453)**,
-royalty **1,000 bps (10%)**. Royalty recipient requires steward review; it is
-intentionally unset. Support maintenance and infrastructure, not financial return.
+royalty **1,000 bps (10%)**. Approved royalty recipient intent:
+**decentagency.eth**. Resolved address and resolution evidence remain null pending
+the parent/steward's final routing verification; never pass the ENS string
+as an already-resolved address or infer it from a deployment admin.
+Primary-sales routing is **unconfirmed**: the existing escrow retains proceeds;
+these inputs do not redirect them to Agency. The parent is separately preparing
+an unsigned plan to add the Agency ENS wallet as NFT `DEFAULT_ADMIN_ROLE`,
+without revoking the personal admin. This is a proposed grant, **not a claim
+that Agency currently has that role**, and does not change sale routing.
+Support maintenance and infrastructure, not financial return.
+
+Deployment/adoption evidence: [hosted checklist](HOSTED-EMBED.md) and
+[independent infrastructure guide](INDEPENDENT-DEPLOYMENT.md).
+`npm run preflight:offline` validates draft terms and local provenance;
+`npm run preflight` deliberately exits 2 until release evidence is supplied.
+Offline success is not deploy, origin, funding, delivery or royalty verification.
+
+## Local verification (2026-10-24)
+
+- `npm run verify:source`: all 14 frozen files match Busking
+  `aa851edda6d3aa08711c66d8e7c480dedca98533`; vendored modules unchanged.
+- `npm test`: 9 tests pass, including mounted synthetic checkout/recovery,
+  teardown/cancellation and fail-closed release preflight.
+- `npm run preflight:offline`: validates unsigned terms, screenshot SHA-256 and
+  source inventory. `npm run preflight` exits 2 as expected: release blocked.
+- Integrated browser served `widget.html` on `http://127.0.0.1:18793`:
+  one header and one widget, live public catalog with 255 songs (256 select
+  options including placeholder), connected queue status, disconnected checkout/
+  profile-save/Play Live disabled. No injected wallet, signatures or purchases.
+  Port 8793 was already occupied by another process; it was not stopped.
+
+This is unsigned browsing only, not adopter-origin permission, transaction,
+audio delivery, production deployment or independent-worker evidence.
 
 Source standards:
 - [DecentHead S12 adopting guide](https://github.com/TheJollyLaMa/DecentHead/blob/072a5206489d0e4a3f2576c56f8debb729d933c9/docs/ADOPTING.md#widget-host-api).
