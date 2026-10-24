@@ -1,10 +1,14 @@
 {
-  "name": "jollyjukebox",
-  "version": "1.0.0",
-  "description": "Web3 JukeBox",
-  "main": "index.js",
+  "name": "@decentagency/djuke",
+  "version": "0.1.0",
+  "description": "Cloneable DJuke widget with shared DecentHead sessions and platform-backed USDC checkout",
+  "type": "module",
+  "main": "widget.js",
+  "exports": "./widget.js",
+  "files": ["widget.js", "widget.html", "vendor/busking", "scripts", "test", "docs", "assets", "sources", "LICENSE", "LICENSES", "NOTICE", "README.md"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test test/*.test.cjs",
+    "verify:source": "node scripts/vendor-busking.mjs --check"
   },
   "keywords": [],
   "author": "",

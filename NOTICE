@@ -30,3 +30,11 @@ Earlier versions released under a previous license remain available under
 that license; this notice applies to the project from 2026-10-21 onward.
 
 Support the work: https://thejollylama.github.io/DecentMarket/ (Supporter DNFTs)
+DJuke standalone widget includes a narrow, immutable source snapshot of
+DecentBusking, copyright 2026 The Jolly LaMa (TheJollyLaMa) and A Decent Agency
+contributors, licensed Apache-2.0. See sources/busking.json and
+vendor/busking/INVENTORY.json for the exact commit and per-file hashes, and
+vendor/busking/NOTICE and LICENSE for upstream notices. The screenshot is CC BY
+4.0; see docs/ARTWORK-PROVENANCE.md. Existing historical art remains subject to
+its original attribution and third-party licenses; it is not reused as new
+supporter-release artwork.

@@ -1,0 +1,76 @@
+{
+  "repository": "https://github.com/TheJollyLaMa/DecentBusking",
+  "commit": "aa851edda6d3aa08711c66d8e7c480dedca98533",
+  "files": [
+    {
+      "source": "js/djuke-widget.mjs",
+      "path": "js/djuke-widget.mjs",
+      "sha256": "33f80745d451868f312d8ebf690db030a54908d1d7564d89a10799ecd0ad8b2a"
+    },
+    {
+      "source": "js/djuke-payment.mjs",
+      "path": "js/djuke-payment.mjs",
+      "sha256": "a1f9801e9384af6344c739df6d8c27357cf1b093186e2b5f282275375a1d631a"
+    },
+    {
+      "source": "js/djuke-checkout.mjs",
+      "path": "js/djuke-checkout.mjs",
+      "sha256": "bf6bb9f07edd0338c0fda650e3188e827803e6460af5d9e0295124d714a4397d"
+    },
+    {
+      "source": "js/djuke-playlists.mjs",
+      "path": "js/djuke-playlists.mjs",
+      "sha256": "7ac8f76718f91daed281a678dd431dcfd9e888ec9de0cbda1b695874393a3d67"
+    },
+    {
+      "source": "js/base-chain.mjs",
+      "path": "js/base-chain.mjs",
+      "sha256": "2922972e354a56ed050b83728f92e485568ee50b5a02c364278b0f2caf4d6811"
+    },
+    {
+      "source": "js/usdc-format.mjs",
+      "path": "js/usdc-format.mjs",
+      "sha256": "fe6a902987d7f17e89db7e39c22f1e7c4b54a8f9e25bf0ecbdf3e967f63772ac"
+    },
+    {
+      "source": "js/djuke-version.mjs",
+      "path": "js/djuke-version.mjs",
+      "sha256": "7d7f14f11be53571cdfdcc873de4706fcd11214f9d493d0c5c9fb820ac46f05d"
+    },
+    {
+      "source": "js/creator-profile-data.mjs",
+      "path": "js/creator-profile-data.mjs",
+      "sha256": "f521185bd21c144927a1fc807f5bdde487ffb442b4c69aded6c60027d32d885d"
+    },
+    {
+      "source": "js/personal-play-recovery.mjs",
+      "path": "js/personal-play-recovery.mjs",
+      "sha256": "bb2c56d6bf7cce3da6e511209f47f0da9b46666e82dc062f8f1096e1e3f37811"
+    },
+    {
+      "source": "js/usdc-abi.mjs",
+      "path": "js/usdc-abi.mjs",
+      "sha256": "93337c0820341ee9d1d239a6ebce8e14e4747096271e7879da549542218d6a55"
+    },
+    {
+      "source": "test/djuke-widget.test.js",
+      "path": "test/djuke-widget.test.cjs",
+      "sha256": "6c42a8d57c5694a871a032c5232b395635cf48e0196318f961a6f00639415b3d"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "source": "NOTICE",
+      "path": "NOTICE",
+      "sha256": "032dda592e0c96a4f0db9f6f5044bfa0d3ddf29021d404f5159c319efae90786"
+    },
+    {
+      "source": "LICENSES/CC-BY-4.0.txt",
+      "path": "LICENSES/CC-BY-4.0.txt",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+    }
+  ]
+}
