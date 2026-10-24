@@ -22,7 +22,13 @@ test('public entry is a plain ES module and supporter inputs remain unsigned dra
   assert.equal(draft.saleRecipientEns, null);
   assert.equal(draft.saleRecipient, null);
   assert.equal(draft.primarySalesRoutingStatus, 'unconfirmed-existing-escrow-retains-proceeds');
-  for (const field of ['tag', 'archiveCid', 'tokenId', 'listingId', 'mintTransactionHash', 'royaltyRecipient']) assert.equal(draft[field], null);
+  assert.equal(draft.royaltyRecipient, '0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a');
+  assert.equal(draft.initialEditionRecipient, draft.royaltyRecipient);
+  assert.equal(draft.recipientResolution.blockNumber, 26262247);
+  assert.equal(draft.recipientResolution.refreshBeforeSigning, true);
+  assert.equal(draft.nftAdminGrant.preserveExistingAdmin, true);
+  assert.equal(draft.nftAdminGrant.status, 'unsigned-simulated-not-confirmed-onchain');
+  for (const field of ['tag', 'archiveCid', 'tokenId', 'listingId', 'mintTransactionHash']) assert.equal(draft[field], null);
 });
 test('offline preflight validates unsigned inputs but does not claim release readiness', () => {
   const { spawnSync } = require('node:child_process');

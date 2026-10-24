@@ -11,7 +11,10 @@
   "archive_cid": null,
   "seller_fee_basis_points": 1000,
   "fee_recipient_ens": "decentagency.eth",
-  "fee_recipient": null,
+  "fee_recipient": "0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a",
+  "initial_edition_recipient": "0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a",
+  "recipient_intent_status": "approved-intent-unverified-onchain-unminted",
+  "refresh_recipient_before_signing": true,
   "attributes": [
     { "trait_type": "Status", "value": "UNMINTED / UNRELEASED DRAFT" },
     { "trait_type": "Planned editions", "value": 1000 },

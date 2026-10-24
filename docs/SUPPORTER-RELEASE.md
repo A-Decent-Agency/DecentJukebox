@@ -8,9 +8,12 @@ This implementation performs no deployment, tags, pinning or chain actions. Rela
 
 Prepared parameters: 1,000 ERC-1155 editions × 10 native USDC on **Base (8453)**,
 royalty **1,000 bps (10%)**. Approved royalty recipient intent:
-**decentagency.eth**. Resolved address and resolution evidence remain null pending
-the parent/steward's final routing verification; never pass the ENS string
-as an already-resolved address or infer it from a deployment admin.
+**decentagency.eth**, also the approved **initial edition recipient**:
+`0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a`. Parent read-only verification
+resolved the name again at Ethereum block **26262247**; the ENS parent owner
+matched that address. These fields record approved intent, **not an on-chain
+mint/royalty/admin configuration**. Refresh ENS resolution and routing immediately
+before signing; no protocol `CREATOR` override is required by these inputs.
 Primary-sales routing is **unconfirmed**: the existing escrow retains proceeds;
 these inputs do not redirect them to Agency. The parent separately prepared
 an unsigned, simulated plan to add the Agency ENS wallet as NFT `DEFAULT_ADMIN_ROLE`,
@@ -31,7 +34,14 @@ See [operator commands and review boundaries](INDEPENDENT-DEPLOYMENT.md#key-free
 It never connects to an RPC or holds a key. 13 product tests including real
 artifact decoding passed with `DJUKE_MARKET_CHECKOUT` set; the upstream local
 worker rehearsal passed with zero real Base transactions. Actual deployment,
-funding, origin authorization, signatures and paid audio evidence remain gates.
+funding, actual signed writes, signatures and paid audio evidence remain gates.
+
+Parent deployment probes subsequently verified **204 signed-write OPTIONS** for
+Agency Pages, `https://djuke.decentagency.eth.limo` and
+`https://dvert.decentagency.eth.limo`. This is deployed CORS/preflight evidence,
+not proof of an actual wallet-signed mutation or paid delivery. No Render
+configuration was changed by this product PR. Pinata authorization is still
+pending; draft release preparation is not a claim of pinned metadata.
 
 ## Local verification (2026-10-24)
 

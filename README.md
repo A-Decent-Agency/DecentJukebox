@@ -18,7 +18,8 @@ Supporter release inputs are **unminted, unsigned drafts**:
 ```sh
 git clone https://github.com/A-Decent-Agency/DecentJukebox.git
 cd DecentJukebox
-# Check out the reviewed PR/commit while this work is unmerged.
+# Fresh clones use main. For reproducible use, pin an actual published tag
+# or reviewed immutable commit; no supporter release is claimed by this draft.
 node scripts/vendor-busking.mjs --check
 node --test test/*.test.cjs
 python3 -m http.server 8793 --bind 127.0.0.1
