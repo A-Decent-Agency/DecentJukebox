@@ -19,8 +19,24 @@
   "saleRecipientEns": null,
   "saleRecipient": null,
   "primarySalesRoutingStatus": "unconfirmed-existing-escrow-retains-proceeds",
-  "recipientResolution": null,
-  "royaltyRecipient": null,
+  "recipientResolution": {
+    "ens": "decentagency.eth",
+    "address": "0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a",
+    "chainId": 1,
+    "blockNumber": 26262247,
+    "evidenceSource": "parent-read-only-verification",
+    "refreshBeforeSigning": true
+  },
+  "royaltyRecipient": "0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a",
+  "initialEditionRecipientEns": "decentagency.eth",
+  "initialEditionRecipient": "0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a",
+  "recipientIntentStatus": "approved-intent-unverified-onchain-unminted",
+  "nftAdminGrant": {
+    "role": "DEFAULT_ADMIN_ROLE",
+    "intendedGrantee": "0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a",
+    "status": "unsigned-simulated-not-confirmed-onchain",
+    "preserveExistingAdmin": true
+  },
   "tag": null,
   "releaseCommit": null,
   "archiveCid": null,

@@ -18,7 +18,8 @@ Supporter release inputs are **unminted, unsigned drafts**:
 ```sh
 git clone https://github.com/A-Decent-Agency/DecentJukebox.git
 cd DecentJukebox
-# Check out the reviewed PR/commit while this work is unmerged.
+# Fresh clones use main. For reproducible use, pin an actual published tag
+# or reviewed immutable commit; no supporter release is claimed by this draft.
 node scripts/vendor-busking.mjs --check
 node --test test/*.test.cjs
 python3 -m http.server 8793 --bind 127.0.0.1
@@ -44,8 +45,9 @@ local dependency copy; no private credentials are involved.
 Choose [hosted-service embedding and origin onboarding](docs/HOSTED-EMBED.md)
 or [independent infrastructure deployment](docs/INDEPENDENT-DEPLOYMENT.md).
 Both are supported integration goals, **not verified release claims**. The latter
-documents the actual upstream scripts and explicitly blocks the missing generic
-deployment path; this repository contains no worker or contract deployment CLI.
+documents actual upstream sources and the key-free
+`scripts/plan-djuke-deployment.mjs` unsigned deployment path; this repository
+contains no worker, private-key handling or transaction broadcast CLI.
 Run `npm run preflight:offline` for unsigned input/provenance validation and
 `npm run preflight` for release gates (currently exits 2: blocked).
 

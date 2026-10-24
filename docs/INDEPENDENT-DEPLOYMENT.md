@@ -1,10 +1,11 @@
 # Independent DJuke infrastructure: evidence-bound deployment guide
 
-Independent operation is an authorized goal, **not turnkey or verified here**.
+Independent operation has a key-free unsigned deployment path below; **no
+independent mainnet deployment is claimed**.
 Static hosting alone does not deploy contracts, register songs, fund a worker,
 pin media or settle/refund payments. Do not run historical deployment scripts
-against production to discover what they do. No transaction command is provided
-by this product; stop for operator review and wallet authorization at every
+against production to discover what they do. This product cannot broadcast
+transactions; stop for operator review and wallet authorization at every
 funding/deploy/role/registration/cutover boundary.
 
 ## Inspected source locations and limits
@@ -89,16 +90,137 @@ module `0x093d2dbCcBA612d2B2aD9B620cA4d0A03D98fE11`, block **52993982**,
 `0x7198f31a89a0d1477feb0872937fe14ba74bc6490e211c256e9f7bf4e99fa2b0`.
 This is source provenance, not a fresh RPC/bytecode audit or your deployment.
 
-**BLOCKED for an independent deployment:** no generic v0.5 deployment script
-is demonstrated. A reviewed operator-specific script/manifest must replace
-these historical assumptions, preserve catalog/album/listen prices and roles,
-verify module/host runtime and constructor values, and rehearse from a clean
-state. Do not overwrite the historical manifest or replay its transaction IDs.
+Do not overwrite the historical manifest or replay its transaction IDs.
+Use this product's generic unsigned planner instead of that historical script.
 Explicitly approve admin, registrar, dedicated fulfiller, router/funds,
 native USDC, catalog ownership and worker sponsorship. Keep EIP-712 domain
 `DecentJukeBox` / `0.2` (not contract release version `0.5`), actual Base chain
 ID and new verifying contract bound correctly. Other chains are unsupported by
 this frozen widget.
+
+### Key-free independent operator path (module → host → configuration)
+
+`scripts/plan-djuke-deployment.mjs` imports the product's existing ethers v6
+dependency and uses `ContractFactory.getDeployTransaction()` **without a runner**.
+It has no RPC provider, signing key, gas estimator, nonce selection or send path.
+It reads compiled artifacts from the exact reviewed Market checkout, compares
+their ABI/bytecode against linked Hardhat build-info, verifies contract inputs
+against the pinned Git source and current files, installed OpenZeppelin inputs,
+compiler 0.8.26/Cancun/viaIR optimizer settings, and unmodified package/lock/config.
+Run `npm ci` in a clean Market clone before compilation to restore locked
+dependency integrity. Source/build-info comparison is not a cryptographic proof
+against a malicious compiler; operator review and reproducible compilation remain
+necessary. Runtime size must satisfy EIP-170.
+
+From **this product** after compiling the pinned clean Market clone above:
+
+```sh
+npm ci --ignore-scripts
+mkdir -p .release-validation
+cp docs/djuke-deployment.example.json .release-validation/operator.json
+# Edit operator.json: replace every placeholder, review, then set reviewed=true.
+node scripts/plan-djuke-deployment.mjs \
+  --market /absolute/path/to/djuke-contracts \
+  --config .release-validation/operator.json --stage module \
+  > .release-validation/module-plan.json
+```
+
+The committed example deliberately fails until edited. No admin/worker is guessed
+from ENS or an existing production address. They must be nonzero distinct
+addresses; token must be native Base USDC; router must be a reviewed address.
+Supply four distinct nonzero **bytes32 IDs actually registered in your router**.
+When your router uses name hashes, calculate them with ethers `id(name)` and
+verify its existing active fund entry; hashing a new name does not register it.
+The positive uint256 `gasContributionCapWei` is a constructor compatibility
+parameter, **not an ETH payment or listener charge**. `workerRegistrar` explicitly
+opts into an extra registrar grant; the default false grants only fulfillment.
+Unknown fields (including keys) are rejected. Never put keys in this file.
+
+`module-plan.json` contains the module creation `data`, chain ID, expected admin
+sender, zero value, artifact hashes, and the next required evidence shape.
+Have the operator review/import that unsigned deployment transaction into their
+own trusted wallet tooling; this CLI cannot submit it. No `to` field is correct
+for contract creation. The external wallet supplies reviewed gas/nonce/fees.
+**Pause for the signature**, then independently verify successful confirmed Base
+receipt and deployed address, exact module runtime code hash, and
+`WORKER_GAS_SPONSORED() == true`. Add the observed data to `operator.json`:
+
+```json
+"moduleReceipt": {
+  "address": "CONFIRMED_MODULE_ADDRESS",
+  "chainId": 8453,
+  "transactionHash": "CONFIRMED_32_BYTE_TRANSACTION_HASH",
+  "status": 1,
+  "runtimeCodeHash": "EXACT_RUNTIME_HASH_FROM_MODULE_PLAN_AND_RPC",
+  "workerGasSponsored": true
+}
+```
+
+Do not paste placeholder strings as real evidence. The planner refuses a failed
+receipt, wrong chain/hash, absent module evidence or address collisions. These
+are **operator attestations**; offline validation cannot prove a chain receipt.
+Then prepare the host using that confirmed address:
+
+```sh
+node scripts/plan-djuke-deployment.mjs \
+  --market /absolute/path/to/djuke-contracts \
+  --config .release-validation/operator.json --stage host \
+  > .release-validation/host-plan.json
+```
+
+The actual artifact ABI encodes exactly:
+`token, router, repoId, pinnerId, admin, worker, gasContributionCap,
+module, playbackFund, topTenFund`. The host checks deployed module sponsorship,
+token/router code and six token decimals on construction. Independently verify
+router/fund compatibility and contract roles as well; addresses passing offline
+syntax checks do not prove those requirements. Review/import the unsigned host
+deployment, pause for the wallet signature and wait for confirmed success.
+Add `"hostReceipt": {"address":"CONFIRMED_HOST_ADDRESS","chainId":8453,
+"transactionHash":"CONFIRMED_32_BYTE_TRANSACTION_HASH","status":1}` to the config.
+Verify actual host code against the compiled immutable-aware deployment, version,
+module, token/router, fund IDs, admin and `gasWorker()` on Base.
+
+For a fresh independent catalog, add reviewed `songs` entries with `songId`
+(nonzero unique bytes32), `audioURI` (`ipfs://...`), nonzero distinct `recipients`
+and positive integer `sharesBps` totaling 10000. Ownership/media rights are an
+external review; syntactically valid CIDs are not pinning evidence. An empty
+array creates no songs. This fresh-song flow does **not** migrate albums/custom
+listen prices or paid queues. An existing album catalog requires its own reviewed
+metadata-preserving migration, not conversion to default-price singles.
+
+```sh
+node scripts/plan-djuke-deployment.mjs \
+  --market /absolute/path/to/djuke-contracts \
+  --config .release-validation/operator.json --stage configure \
+  > .release-validation/configuration-plan.json
+DJUKE_MARKET_CHECKOUT=/absolute/path/to/djuke-contracts npm test
+```
+
+Configuration contains separate unsigned calls in order: `pauseRequests()`,
+`grantRole(keccak256("REGISTRAR_ROLE"), admin)`,
+`grantRole(keccak256("FULFILLER_ROLE"), worker)`, optional worker registrar,
+then `registerSong(...)` per entry. All require the indicated admin sender and
+zero value; none revokes an admin or grants the NFT's separate admin role.
+**Host construction starts unpaused:** keep worker/browser payments disabled
+and execute the pause first. A separate `activationAfterExternalVerification`
+call encodes `resumeRequests()` but is intentionally outside `transactions`.
+Do not sign it until the worker/cutover checks below pass.
+The generated worker environment keeps both payment/batch switches false and
+leaves deployment block as an explicit replacement marker, never block zero.
+Keep each reviewed plan and confirmed receipt as the deployment journal.
+
+Validation on 2026-10-24: 13 product tests passed, including decoding these real
+artifacts' ten constructor arguments and role/catalog/pause/resume calldata.
+The focused upstream v0.4/v0.5 contract suites passed **18/18** on the local
+Hardhat network with `hardhat test --no-compile
+test/DecentJukeBox_v04_playlist.test.js test/DecentJukeBox_v05_sponsored.test.js`.
+The pinned upstream worker rehearsal also passed using copied reviewed source/
+artifacts and preexisting dependencies **inside this owned worktree**:
+`BUSKING_WORKTREE=... DJUKE_REHEARSAL_VERSION=0.5 hardhat run --no-compile
+scripts/rehearse_djuke_v04_worker.js`. It settled 12 ordered songs, verified
+artist/four-fund routing, restart and main cut-in, and three retries then suffix
+refund; result `realBaseTransactions: 0`. This is a local mock token/router/L1
+oracle rehearsal, not actual audio EOF/PCM or independent mainnet evidence.
 
 ## 2. Prepare the worker in an operator-owned checkout
 
@@ -185,8 +307,8 @@ flags), preserve funded paid-delivery/refund operations and journals, and drain/
 reconcile both paid lanes. Never abandon paid queues, wipe journals, replay
 payments, or repoint old receipts to the replacement contract.
 
-**Unmet release evidence:** clean independent contract deployment tooling and
-rehearsal; any required escrow procedure; operator identities/routing, media
+**Unmet release evidence:** actual independently confirmed contract deployment;
+any required escrow procedure; operator identities/routing, media
 rights and catalog setup; actual funded worker/mirror recovery; exact-origin
 authorization; wallet-approved paid staging and delivery/refunds; recipient ENS
 resolution, final immutable archive/artwork/metadata and wallet signatures.

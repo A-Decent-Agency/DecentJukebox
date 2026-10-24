@@ -83,7 +83,11 @@ to each endpoint, then verify wallet-authorized mutations on the approved origin
 The first two routes are DJuke's exact signed POST boundaries; do not replace
 their test with a public GET. **No current production approval is demonstrated
 by this PR's tests:** browser validation is unsigned/public browsing only, and
-native tests inject synthetic services. The parent/operator performs deployment
+native tests inject synthetic services. **Subsequent parent deployment probes
+verified signed-write OPTIONS 204** for `https://a-decent-agency.github.io`,
+`https://djuke.decentagency.eth.limo` and `https://dvert.decentagency.eth.limo`.
+That closes the deployed preflight check, not the actual wallet-signed mutation
+or paid-delivery gates. The parent/operator performs deployment
 probes; this PR never modifies Render configuration.
 
 ## 3. Verify from the real origin, without buying playback
@@ -129,6 +133,7 @@ queue appear empty.
 
 Record the exact host origin, reviewed worker/product commits, operator approval,
 checks and transaction/evidence links before declaring adoption verified.
-**Current blocker:** this product PR does not demonstrate operator approval or
-signed-profile/paid tests from a new adopter origin. No hosted SLA is asserted.
+**Current blocker:** actual signed-profile/paid tests from the adopter origin
+remain unverified; parent-reported deployed OPTIONS checks pass as recorded
+above. No hosted SLA is asserted.
 See [independent setup](INDEPENDENT-DEPLOYMENT.md) if you operate your own worker.
