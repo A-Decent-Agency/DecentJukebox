@@ -5,7 +5,7 @@
   "type": "module",
   "main": "widget.js",
   "exports": "./widget.js",
-  "files": ["widget.js", "widget.html", "vendor/busking", "scripts", "test", "docs", "assets", "sources", "LICENSE", "LICENSES", "NOTICE", "README.md"],
+  "files": ["widget.js", "widget.html", "index.html", "vendor/busking", "scripts", "test", "docs", "assets", "sources", "LICENSE", "LICENSES", "NOTICE", "README.md"],
   "scripts": {
     "test": "node --test test/*.test.cjs",
     "verify:source": "node scripts/vendor-busking.mjs --check",

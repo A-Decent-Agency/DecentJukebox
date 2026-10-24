@@ -22,12 +22,14 @@ cd DecentJukebox
 node scripts/vendor-busking.mjs --check
 node --test test/*.test.cjs
 python3 -m http.server 8793 --bind 127.0.0.1
-# Open http://127.0.0.1:8793/widget.html
+# Open http://127.0.0.1:8793/ (widget.html is also supported)
 ```
 
 No install/build is needed to serve the committed widget. Existing `public/`
 is preserved **historical Jukebox prior art**; the new entry is `widget.html`,
-not that legacy Polygon/MintMe application. The legacy root dependencies are
+not that legacy Polygon/MintMe application. Root `index.html` serves the same
+actual widget for tagged-site rendering; historical `public/index.html` is
+unchanged. The legacy root dependencies are
 not a worker deployment. Do not enter wallet secrets or IPFS credentials in
 configuration or source.
 

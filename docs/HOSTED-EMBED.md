@@ -64,6 +64,28 @@ and confirms the new origin is effective. This PR does not change that environme
 Public GETs often return `Access-Control-Allow-Origin: *`; a working catalog is
 **not** proof that saving playlists is allowed.
 
+For this product's release, request the Agency Pages origin
+`https://a-decent-agency.github.io` (the `/DecentJukebox/` repository path is
+excluded), plus each **actual browser origin** used to serve
+`djuke.decentagency.eth`, for example `https://djuke.decentagency.eth.limo` when
+using that gateway. The ENS name alone is not a browser-origin approval; direct
+`.eth`, `.eth.link`, gateway/subdomain and custom-domain hosts must each be
+verified and approved if used. Do not assume a contenthash update permits them.
+Preflight each signed mutation route actually consumed by the widget:
+
+- `POST /api/creator/playlists` — save an original playlist.
+- `POST /api/creator/playlists/copy` — save an attributed copy.
+- `POST /api/creator/profile` — profile mutation if provided by the shared host.
+
+All are under `https://decentbusking.onrender.com`; send `OPTIONS` with the
+real `Origin`, requested method `POST` and requested header `content-type`
+to each endpoint, then verify wallet-authorized mutations on the approved origin.
+The first two routes are DJuke's exact signed POST boundaries; do not replace
+their test with a public GET. **No current production approval is demonstrated
+by this PR's tests:** browser validation is unsigned/public browsing only, and
+native tests inject synthetic services. The parent/operator performs deployment
+probes; this PR never modifies Render configuration.
+
 ## 3. Verify from the real origin, without buying playback
 
 These read-only requests inspect health and CORS; no signing or funds:

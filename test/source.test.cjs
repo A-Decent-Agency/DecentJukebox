@@ -38,3 +38,32 @@ test('offline preflight validates unsigned inputs but does not claim release rea
   assert.equal(invalid.status, 1);
   assert.match(invalid.stderr, /Only --offline/);
 });
+test('release renderer root mounts the real widget and preserves the historical app', () => {
+  const root = resolve(__dirname, '..');
+  const index = readFileSync(resolve(root, 'index.html'), 'utf8');
+  assert.equal(index, readFileSync(resolve(root, 'widget.html'), 'utf8'));
+  assert.match(index, /import \{ mount \} from '\.\/widget\.js'/);
+  assert.match(index, /const widget = mount\(/);
+  assert.equal((index.match(/<decent-header>/g) || []).length, 1);
+  assert.doesNotMatch(index, /http-equiv=["']refresh|<iframe/i);
+  assert.ok(readFileSync(resolve(root, 'public/index.html'), 'utf8').length > 100);
+  assert.ok(JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8')).files.includes('index.html'));
+});
+test('supporter callers pin both kit references and require explicit notifier opt-in', () => {
+  const root = resolve(__dirname, '..');
+  const pin = '3b2a72f7f8c49fb2af89ea7df2ead8e338e0e870';
+  for (const [caller, reusable] of [['release', 'prepare'], ['announce', 'announce']]) {
+    const workflow = readFileSync(resolve(root, `.github/workflows/supporter-${caller}.yml`), 'utf8');
+    assert.ok(workflow.includes(`uses: TheJollyLaMa/DecentHead/.github/workflows/product-supporter-${reusable}.yml@${pin}`));
+    assert.ok(workflow.includes(`head_ref: ${pin}`));
+    assert.equal((workflow.match(new RegExp(pin, 'g')) || []).length, 2);
+    assert.doesNotMatch(workflow, /DECENTHEAD_SHA|secrets:\s*inherit|@main|@master/);
+    if (caller === 'release') {
+      assert.ok(workflow.includes('PINATA_JWT: ${{ secrets.PINATA_JWT }}'));
+      assert.match(workflow, /product_name: DJuke/);
+    } else {
+      assert.ok(workflow.includes("if: ${{ vars.SUPPORTER_DISCORD_ENABLED == 'true' }}"));
+      assert.ok(workflow.includes('DISCORD_SUPPORTER_WEBHOOK: ${{ secrets.DISCORD_SUPPORTER_WEBHOOK }}'));
+    }
+  }
+});
