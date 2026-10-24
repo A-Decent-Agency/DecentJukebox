@@ -12,7 +12,7 @@ const blockers = [
   'Unsigned independent deployment planner is available; real deployment confirmations, operator-reviewed routing and staged activation remain external gates.',
   'Requested DecentEscrow checkout has no demonstrated deploy/build procedure.',
   'Worker funding, roles, durable mirror recovery and independent routing are not verified by offline checks.',
-  'Final decentagency.eth royalty routing verification, unsigned admin-grant review and unconfirmed primary-sales routing remain pending.',
+  'Personal mint/royalty recipient verification and unconfirmed primary-sales routing remain pending; Agency controls ENS only.',
   'Final release commit/tag, pinned archive/artwork/metadata, duplicate-mint review and human wallet signatures remain pending.',
 ];
 
@@ -31,19 +31,19 @@ try {
   assert.equal(inputs.unitPriceUnits, '10000000');
   assert.equal(inputs.royaltyBps, 1000);
   assert.equal(metadata.seller_fee_basis_points, inputs.royaltyBps);
-  assert.equal(inputs.royaltyRecipientEns, 'decentagency.eth');
+  assert.equal(inputs.royaltyRecipientEns, 'thejollylama.eth');
   assert.equal(inputs.saleRecipientEns, null);
   assert.equal(inputs.primarySalesRoutingStatus, 'unconfirmed-existing-escrow-retains-proceeds');
   assert.equal(metadata.fee_recipient_ens, inputs.royaltyRecipientEns);
-  const intendedRecipient = '0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a';
+  const intendedRecipient = '0x807061DF657A7697c04045dA7d16D941861cAABc';
   assert.equal(inputs.royaltyRecipient, intendedRecipient);
   assert.equal(inputs.initialEditionRecipient, intendedRecipient);
-  assert.equal(inputs.initialEditionRecipientEns, 'decentagency.eth');
+  assert.equal(inputs.initialEditionRecipientEns, 'thejollylama.eth');
   assert.equal(inputs.recipientIntentStatus, 'approved-intent-unverified-onchain-unminted');
-  assert.deepEqual(inputs.recipientResolution, { ens: 'decentagency.eth', address: intendedRecipient,
-    chainId: 1, blockNumber: 26262247, evidenceSource: 'parent-read-only-verification', refreshBeforeSigning: true });
-  assert.deepEqual(inputs.nftAdminGrant, { role: 'DEFAULT_ADMIN_ROLE', intendedGrantee: intendedRecipient,
-    status: 'unsigned-simulated-not-confirmed-onchain', preserveExistingAdmin: true });
+  assert.deepEqual(inputs.recipientResolution, { ens: 'thejollylama.eth', address: intendedRecipient,
+    chainId: 1, blockNumber: null, evidenceSource: 'steward-correction-recheck-before-signing', refreshBeforeSigning: true });
+  assert.deepEqual(inputs.nftAdminGrant, { role: 'DEFAULT_ADMIN_ROLE', intendedGrantee: null,
+    status: 'withdrawn-not-required-personal-admin-mints', preserveExistingAdmin: true });
   assert.equal(metadata.fee_recipient, intendedRecipient);
   assert.equal(metadata.initial_edition_recipient, intendedRecipient);
   assert.equal(metadata.recipient_intent_status, inputs.recipientIntentStatus);

@@ -1,24 +1,23 @@
 # Unsigned DJuke supporter release checklist (S11 / S12)
 
-**Not minted. Not listed. Not released.** No token/listing ID or archive CID
-exists in these draft inputs. Hosted embeds and documented independent deployments
-are authorized goals; merge/deploy/publish remain conditional on verification.
-This implementation performs no deployment, tags, pinning or chain actions. Related:
+**Released and pinned; not minted or listed.** The public
+[v0.1.0 release](https://github.com/A-Decent-Agency/DecentJukebox/releases/tag/v0.1.0)
+has frozen source/site/art/metadata assets. The local draft JSON remains unsigned
+planning input, not the frozen manifest or on-chain evidence. Related:
 [DecentBusking #245](https://github.com/TheJollyLaMa/DecentBusking/issues/245).
 
 Prepared parameters: 1,000 ERC-1155 editions × 10 native USDC on **Base (8453)**,
-royalty **1,000 bps (10%)**. Approved royalty recipient intent:
-**decentagency.eth**, also the approved **initial edition recipient**:
-`0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a`. Parent read-only verification
-resolved the name again at Ethereum block **26262247**; the ENS parent owner
-matched that address. These fields record approved intent, **not an on-chain
-mint/royalty/admin configuration**. Refresh ENS resolution and routing immediately
-before signing; no protocol `CREATOR` override is required by these inputs.
+royalty **1,000 bps (10%)**. The steward corrected the wallet split:
+**thejollylama.eth**, `0x807061DF657A7697c04045dA7d16D941861cAABc`, handles
+supporter registration/minting, initial editions and royalties.
+**decentagency.eth**, `0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a`, controls
+only the widget ENS subnames on Ethereum. The proposed Agency NFT-admin grant
+is withdrawn: do not sign it. Keep the existing personal NFT admin.
+These are unsigned intentions, not on-chain configuration. Refresh ENS and
+Base role state immediately before signing; no `CREATOR` override is required.
 Primary-sales routing is **unconfirmed**: the existing escrow retains proceeds;
-these inputs do not redirect them to Agency. The parent separately prepared
-an unsigned, simulated plan to add the Agency ENS wallet as NFT `DEFAULT_ADMIN_ROLE`,
-without revoking the personal admin. This is a proposed grant, **not a claim
-that Agency currently has that role**, and does not change sale routing.
+these inputs do not redirect them to either wallet. Stop before stock transfer
+or listing until the proceeds route is explicitly approved.
 Support maintenance and infrastructure, not financial return.
 
 Deployment/adoption evidence: [hosted checklist](HOSTED-EMBED.md) and
@@ -40,10 +39,10 @@ Parent deployment probes subsequently verified **204 signed-write OPTIONS** for
 Agency Pages, `https://djuke.decentagency.eth.limo` and
 `https://dvert.decentagency.eth.limo`. This is deployed CORS/preflight evidence,
 not proof of an actual wallet-signed mutation or paid delivery. No Render
-configuration was changed by this product PR. Pinata authorization is still
-pending; draft release preparation is not a claim of pinned metadata.
+configuration was changed by this product PR. Subsequent v0.1.0 preparation
+passed with configured Pinata authorization; its public manifest is authoritative.
 
-## Local verification (2026-10-24)
+## Historical local verification (before v0.1.0 publication)
 
 - `npm run verify:source`: all 14 frozen files match Busking
   `aa851edda6d3aa08711c66d8e7c480dedca98533`; vendored modules unchanged.
@@ -118,8 +117,8 @@ the kit's generated metadata/contract mint/listing will match every approved
 term. Review frozen metadata, 1,000 editions, 10 USDC price, 10% royalty and
 recipient routing before the steward signs anything.
 
-The parent/operator configures `PINATA_JWT` in repository secrets (currently
-not demonstrated), `SUPPORTER_ENS_NAME=djuke.decentagency.eth` only after name
+The parent/operator configured `PINATA_JWT` in repository secrets; preparation
+succeeded. Set `SUPPORTER_ENS_NAME=djuke.decentagency.eth` only after name
 control is verified, and optionally credential-free `SUPPORTER_ENS_RPC_URL`.
 No credential is copied here. `DISCORD_SUPPORTER_WEBHOOK` is needed only when
 announcement is deliberately enabled. **Default notifier is disabled**: the
