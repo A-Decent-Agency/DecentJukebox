@@ -10,9 +10,9 @@
   "release_commit": null,
   "archive_cid": null,
   "seller_fee_basis_points": 1000,
-  "fee_recipient_ens": "decentagency.eth",
-  "fee_recipient": "0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a",
-  "initial_edition_recipient": "0xcAeEd8422fB5682C298B7F0971906d446fFd4e7a",
+  "fee_recipient_ens": "thejollylama.eth",
+  "fee_recipient": "0x807061DF657A7697c04045dA7d16D941861cAABc",
+  "initial_edition_recipient": "0x807061DF657A7697c04045dA7d16D941861cAABc",
   "recipient_intent_status": "approved-intent-unverified-onchain-unminted",
   "refresh_recipient_before_signing": true,
   "attributes": [
