@@ -1,0 +1,24 @@
+{
+  "repository": "https://github.com/TheJollyLaMa/DecentBusking",
+  "commit": "aa851edda6d3aa08711c66d8e7c480dedca98533",
+  "pullRequest": "https://github.com/TheJollyLaMa/DecentBusking/pull/279",
+  "baselineWith274": "045c625",
+  "codeLicense": "Apache-2.0",
+  "creativeLicense": "CC-BY-4.0",
+  "files": [
+    "js/djuke-widget.mjs",
+    "js/djuke-payment.mjs",
+    "js/djuke-checkout.mjs",
+    "js/djuke-playlists.mjs",
+    "js/base-chain.mjs",
+    "js/usdc-format.mjs",
+    "js/djuke-version.mjs",
+    "js/creator-profile-data.mjs",
+    "js/personal-play-recovery.mjs",
+    "js/usdc-abi.mjs",
+    "test/djuke-widget.test.js",
+    "LICENSE",
+    "NOTICE",
+    "LICENSES/CC-BY-4.0.txt"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "DJuke Supporter — unsigned release draft",
+  "description": "Support maintenance of the cloneable DJuke jukebox widget and its shared paid-playback infrastructure. This is draft metadata, not a minted edition, playback purchase, investment, music ownership or service-level guarantee.",
+  "external_url": "https://github.com/A-Decent-Agency/DecentJukebox",
+  "image": null,
+  "license": "Apache-2.0",
+  "source_repository": "https://github.com/TheJollyLaMa/DecentBusking",
+  "source_commit": "aa851edda6d3aa08711c66d8e7c480dedca98533",
+  "release_tag": null,
+  "release_commit": null,
+  "archive_cid": null,
+  "seller_fee_basis_points": 1000,
+  "fee_recipient_ens": "decentagency.eth",
+  "fee_recipient": null,
+  "attributes": [
+    { "trait_type": "Status", "value": "UNMINTED / UNRELEASED DRAFT" },
+    { "trait_type": "Planned editions", "value": 1000 },
+    { "trait_type": "Planned unit price", "value": "10 USDC on Base" },
+    { "trait_type": "Display identity", "value": "DJuke.decentagency.eth" }
+  ]
+}

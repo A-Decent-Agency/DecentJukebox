@@ -1,3 +1,161 @@
+# DJuke — cloneable jukebox widget
+
+**Display identity: DJuke.decentagency.eth** · normalized ENS/DNS:
+`djuke.decentagency.eth`. This label is not a claim of ENS registration,
+contenthash/DNS deployment, minted editions or a published release.
+
+A real plain-ES-module paid jukebox product, not a full-site iframe or mock.
+Includes singles/replacement, ordered playlist drafts, Save to Profile,
+Personal Play, Play Live and receipts/recovery under Profile → Playlists.
+Supporter release inputs are **unminted, unsigned drafts**:
+[release checklist](docs/SUPPORTER-RELEASE.md), [parameters](docs/supporter-release-inputs.json),
+[draft metadata](docs/supporter-metadata.draft.json).
+
+![Actual DJuke widget screenshot: disconnected wallet, real catalog and USDC controls](assets/djuke-controls.png)
+
+## Clone and preview
+
+```sh
+git clone https://github.com/A-Decent-Agency/DecentJukebox.git
+cd DecentJukebox
+# Check out the reviewed PR/commit while this work is unmerged.
+node scripts/vendor-busking.mjs --check
+node --test test/*.test.cjs
+python3 -m http.server 8793 --bind 127.0.0.1
+# Open http://127.0.0.1:8793/ (widget.html is also supported)
+```
+
+No install/build is needed to serve the committed widget. Existing `public/`
+is preserved **historical Jukebox prior art**; the new entry is `widget.html`,
+not that legacy Polygon/MintMe application. Root `index.html` serves the same
+actual widget for tagged-site rendering; historical `public/index.html` is
+unchanged. The legacy root dependencies are
+not a worker deployment. Do not enter wallet secrets or IPFS credentials in
+configuration or source.
+
+The demo loads DecentHead v2 from immutable commit
+`072a5206489d0e4a3f2576c56f8debb729d933c9` and ethers v6.17.0 via CDN.
+Use your existing host's copy instead in an integration (one header only).
+CDN unavailability/CSP must be handled by your host or a separately reviewed
+local dependency copy; no private credentials are involved.
+
+## Embed: S12 host contract
+
+Choose [hosted-service embedding and origin onboarding](docs/HOSTED-EMBED.md)
+or [independent infrastructure deployment](docs/INDEPENDENT-DEPLOYMENT.md).
+Both are supported integration goals, **not verified release claims**. The latter
+documents the actual upstream scripts and explicitly blocks the missing generic
+deployment path; this repository contains no worker or contract deployment CLI.
+Run `npm run preflight:offline` for unsigned input/provenance validation and
+`npm run preflight` for release gates (currently exits 2: blocked).
+
+```html
+<!-- Your host already owns a single <decent-header>. -->
+<div id="music" style="--djuke-accent:#99e9ce;--djuke-radius:8px"></div>
+<script type="module">
+  import { mount } from './widget.js';
+  const widget = mount(document.getElementById('music'), {
+    title: 'Our community DJuke',
+    ethers: window.ethers, // host-supplied ethers v6
+    config: {
+      ipfsUploadServiceUrl: 'https://decentbusking.onrender.com',
+      djukeContractAddress: '0xf51D2F7892cF9D49e14DF4afDf227a59ee170A51',
+      djukeContractVersion: '0.5',
+      djukePlaylistBatchAddress: '0xf51D2F7892cF9D49e14DF4afDf227a59ee170A51',
+      djukePlaylistBatchVersion: '0.5',
+      djukePlaylistBatchEnabled: true,
+      djukePlaylistRadioReady: true
+    }
+  });
+  // On SPA route disposal, not after each render:
+  // widget.destroy(); // idempotent, and the same element may be mounted again
+</script>
+```
+
+Options never overwrite host configuration. DJuke waits for
+`window.DecentHead` / `decenthead:ready`, reads `getWallet().snapshot()`, uses
+the **existing connected ethers BrowserProvider**, and unsubscribes from
+`head.on('wallet')` at teardown. It never calls `wallet.connect()`,
+`eth_requestAccounts`, or `ensureChain`; connect and switch to **Base** using
+the host header first. Signer retrieval is only on an explicit user action,
+not mount. Save/copy requires an explicit wallet authorization; checkout
+requires real approvals/transactions only when the user deliberately chooses it.
+
+It reuses `getIpfs()` rather than creating a storage login. That host session
+is not a raw audio uploader; DJuke never uploads or pins. `ipfsGateway`
+option defaults to `https://ipfs.io/ipfs/` for paid media. A gateway URL is not
+durable pinning. `head`, `fetch`, `storage`, and `ethers` injection support
+deterministic tests. `refresh()` is also returned. Destroy aborts pending
+fetches and cancels later approval/send after async preparation, clears timers,
+listeners and media, and persists active Personal Play progress. An already
+submitted wallet transaction cannot be reversed by unmounting; keep its receipt.
+
+## Customize without removing principal controls
+
+Set inherited CSS variables on the mount element:
+`--djuke-background`, `--djuke-text`, `--djuke-accent`, `--djuke-control`,
+`--djuke-font`, `--djuke-radius`, `--djuke-width`. Shadow DOM prevents CSS
+leakage. Reduced-motion preferences, keyboard focus, native audio controls
+and status announcements remain accessible. Change title/colors/font/spacing;
+keep core song/playlist/receipt controls, prices, artist/fund split and
+transaction/delivery distinctions visible.
+
+## Real platform services, support and funding
+
+The static clone does **not** self-host contracts or a funded playback worker.
+Its explicit default configuration is the current DecentBusking Base DJuke
+v0.5 contract `0xf51D2F7892cF9D49e14DF4afDf227a59ee170A51` and
+`https://decentbusking.onrender.com`. Only native Base USDC
+`0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` is accepted. The public
+service may be offline, and clone origins must be approved for CORS and
+signed-profile mutations. Do not claim successful integration until your
+exact host origin has been permitted and staging-tested.
+
+Checkout is disabled with explicit errors if config, the worker, contract
+identity or playlist readiness is missing/mismatched. Queue confirmation
+is not delivery. Worker funding, durable mirror/checkpoints, media retries,
+per-resource EOF/PCM evidence, partial refunds, milestone fees and settlement
+remain the platform's responsibilities; no worker code is copied here.
+The frozen source is newer than #274's media evidence fix. Private purchases
+save recovery before confirmation, verify transaction ownership on resume
+and never repurchase on Resume. Keep browser storage and your Base receipt.
+
+Single payments preserve **90% artists/collaborators, 8% pinning, 2% dev fund**.
+Play Live playlist fees remain 3 USDC per started group of 12 songs; normal
+Base network gas is separate, not a new listener worker-ETH charge.
+Supporter editions support maintenance/infrastructure, not investment yield,
+music ownership or an unlimited service guarantee.
+
+For support, open an issue here with browser/version, public service/contract,
+error, affected playlist/lane and transaction hash. Platform incidents also
+belong in [DecentBusking](https://github.com/TheJollyLaMa/DecentBusking/issues).
+Never submit secrets, wallet recovery phrases or private profile exports.
+
+## Provenance and validation
+
+`vendor/busking/` is a narrow, byte-preserved snapshot at
+[`aa851edda6d3aa08711c66d8e7c480dedca98533`](https://github.com/TheJollyLaMa/DecentBusking/commit/aa851edda6d3aa08711c66d8e7c480dedca98533),
+not a moving URL or whole-app copy. Manifest: `sources/busking.json`;
+hashes: `vendor/busking/INVENTORY.json`. Code is Apache-2.0, original
+creative content CC BY 4.0; upstream LICENSE/NOTICE/creative license
+are preserved. Screenshot provenance: [ARTWORK-PROVENANCE](docs/ARTWORK-PROVENANCE.md).
+
+To update, review an immutable upstream commit, edit the source manifest,
+then run `node scripts/vendor-busking.mjs --refresh /path/to/DecentBusking`.
+Never hand-edit vendored files. `--check` validates exact file/hash inventory.
+The native tests exercise actual mount/destroy and synthetic single/replacement/
+save/private/recovery/live handlers; no test signs or sends real transactions.
+Upstream ran 98 DJuke/audio-evidence tests, including #274 EOF/PCM and retry
+regressions. No live paid test, mint, pin, registration, listing, tag,
+release, announcement or production restart was performed.
+
+---
+
+## Historical Jukebox prior art and credits (preserved)
+
+The legacy material below documents the earlier application, not the current
+standalone widget configuration or a claim that it runs on Polygon/MintMe.
+
 <div  style="font-family: 'Comic Sans MS', cursive; font-size: 24px; color: white; background-color: black; padding: 10px;" align="center">
     <img src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" alt="Ens_Eth_Breathe Logo" width="100" height="100">
     <img src="https://raw.githubusercontent.com/TheJollyLaMa/JollyJukeBox/main/public/assets/Decent_Jukebox_QR.png" alt="JukeBox QR code" width="400" height="400">
