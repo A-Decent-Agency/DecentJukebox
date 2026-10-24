@@ -24,6 +24,15 @@ Deployment/adoption evidence: [hosted checklist](HOSTED-EMBED.md) and
 `npm run preflight` deliberately exits 2 until release evidence is supplied.
 Offline success is not deploy, origin, funding, delivery or royalty verification.
 
+The follow-up unsigned independent deployment path is implemented in
+`scripts/plan-djuke-deployment.mjs`: module creation, confirmed-module host
+creation, then role/song/configuration calldata from actual pinned Market ABIs.
+See [operator commands and review boundaries](INDEPENDENT-DEPLOYMENT.md#key-free-independent-operator-path-module--host--configuration).
+It never connects to an RPC or holds a key. 13 product tests including real
+artifact decoding passed with `DJUKE_MARKET_CHECKOUT` set; the upstream local
+worker rehearsal passed with zero real Base transactions. Actual deployment,
+funding, origin authorization, signatures and paid audio evidence remain gates.
+
 ## Local verification (2026-10-24)
 
 - `npm run verify:source`: all 14 frozen files match Busking

@@ -44,8 +44,9 @@ local dependency copy; no private credentials are involved.
 Choose [hosted-service embedding and origin onboarding](docs/HOSTED-EMBED.md)
 or [independent infrastructure deployment](docs/INDEPENDENT-DEPLOYMENT.md).
 Both are supported integration goals, **not verified release claims**. The latter
-documents the actual upstream scripts and explicitly blocks the missing generic
-deployment path; this repository contains no worker or contract deployment CLI.
+documents actual upstream sources and the key-free
+`scripts/plan-djuke-deployment.mjs` unsigned deployment path; this repository
+contains no worker, private-key handling or transaction broadcast CLI.
 Run `npm run preflight:offline` for unsigned input/provenance validation and
 `npm run preflight` for release gates (currently exits 2: blocked).
 

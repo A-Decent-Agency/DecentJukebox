@@ -9,7 +9,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const json = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
 const blockers = [
   'Exact adopter origin approval, signed-profile and wallet-approved paid staging/delivery evidence are not recorded.',
-  'Independent v0.5 deployment needs reviewed operator-specific tooling; the historical migration script is not generic.',
+  'Unsigned independent deployment planner is available; real deployment confirmations, operator-reviewed routing and staged activation remain external gates.',
   'Requested DecentEscrow checkout has no demonstrated deploy/build procedure.',
   'Worker funding, roles, durable mirror recovery and independent routing are not verified by offline checks.',
   'Final decentagency.eth royalty routing verification, unsigned admin-grant review and unconfirmed primary-sales routing remain pending.',

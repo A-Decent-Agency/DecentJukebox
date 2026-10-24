@@ -1,0 +1,17 @@
+{
+  "reviewed": false,
+  "chainId": 8453,
+  "admin": "REPLACE_WITH_REVIEWED_ADMIN_ADDRESS",
+  "worker": "REPLACE_WITH_DISTINCT_DEDICATED_WORKER_ADDRESS",
+  "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "router": "REPLACE_WITH_VERIFIED_ROUTER_ADDRESS",
+  "fundIds": {
+    "repo": "REPLACE_WITH_ROUTER_BYTES32_FUND_ID",
+    "pinners": "REPLACE_WITH_ROUTER_BYTES32_FUND_ID",
+    "playback": "REPLACE_WITH_ROUTER_BYTES32_FUND_ID",
+    "top10": "REPLACE_WITH_ROUTER_BYTES32_FUND_ID"
+  },
+  "gasContributionCapWei": "1000000000000000",
+  "workerRegistrar": false,
+  "songs": []
+}
