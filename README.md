@@ -1,13 +1,15 @@
 # DJuke — cloneable jukebox widget
 
 **Display identity: DJuke.decentagency.eth** · normalized ENS/DNS:
-`djuke.decentagency.eth`. This label is not a claim of ENS registration,
-contenthash/DNS deployment, minted editions or a published release.
+`djuke.decentagency.eth`. The published v0.2.0 evidence records ENS contenthash,
+100 minted supporter editions (token 72) and listing 2.
+See [clone, adapt and support](docs/CLONE_AND_ADAPT.md) for evidence and boundaries;
+current stock and resolution must be rechecked.
 
 A real plain-ES-module paid jukebox product, not a full-site iframe or mock.
 Includes singles/replacement, ordered playlist drafts, Save to Profile,
 Personal Play, Play Live and receipts/recovery under Profile → Playlists.
-Supporter release inputs are **unminted, unsigned drafts**:
+Local supporter release inputs remain **unsigned historical drafts**, not current receipts:
 [release checklist](docs/SUPPORTER-RELEASE.md), [parameters](docs/supporter-release-inputs.json),
 [draft metadata](docs/supporter-metadata.draft.json).
 
@@ -19,9 +21,9 @@ Supporter release inputs are **unminted, unsigned drafts**:
 git clone https://github.com/A-Decent-Agency/DecentJukebox.git
 cd DecentJukebox
 # Fresh clones use main. For reproducible use, pin an actual published tag
-# or reviewed immutable commit; no supporter release is claimed by this draft.
+# or reviewed immutable commit; v0.2.0 has published supporter evidence.
 node scripts/vendor-busking.mjs --check
-node --test test/*.test.cjs
+# All tests need dev/runtime dependencies; see docs/CLONE_AND_ADAPT.md.
 python3 -m http.server 8793 --bind 127.0.0.1
 # Open http://127.0.0.1:8793/ (widget.html is also supported)
 ```

@@ -1,5 +1,14 @@
 # Unsigned DJuke supporter release checklist (S11 / S12)
 
+## Published evidence supersedes the historical checklist
+
+The v0.2.0 release now has public ENS, mint and listing receipts: token **72**,
+listing **2**. See [clone, adapt and support](CLONE_AND_ADAPT.md) for the exact
+release source and dated snapshots. Do not register or mint a duplicate.
+The preparation narrative below is retained as historical guidance; its
+unminted/unlisted and unconfirmed-routing statements are not current status.
+Local draft JSON and offline preflight remain planning checks, not receipt readers.
+
 **Released and pinned; not minted or listed.** The public
 [v0.1.0 release](https://github.com/A-Decent-Agency/DecentJukebox/releases/tag/v0.1.0)
 has frozen source/site/art/metadata assets. The local draft JSON remains unsigned
