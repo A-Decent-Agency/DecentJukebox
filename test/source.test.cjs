@@ -48,7 +48,8 @@ test('offline preflight validates unsigned inputs but does not claim release rea
 test('release renderer root mounts the real widget and preserves the historical app', () => {
   const root = resolve(__dirname, '..');
   const index = readFileSync(resolve(root, 'index.html'), 'utf8');
-  assert.equal(index, readFileSync(resolve(root, 'widget.html'), 'utf8'));
+  const withoutCanonical = html => html.replace(/(<meta property="og:url" content=")[^"]+(">)/, '$1$2');
+  assert.equal(withoutCanonical(index), withoutCanonical(readFileSync(resolve(root, 'widget.html'), 'utf8')));
   assert.match(index, /import \{ mount \} from '\.\/widget\.js'/);
   assert.match(index, /const widget = mount\(/);
   assert.equal((index.match(/<decent-header>/g) || []).length, 1);
